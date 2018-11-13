@@ -14,6 +14,8 @@
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/index', 'HomeController@index')->name('index');
 Route::resource('/setting-perusahaan', 'InfoPerusahaanController');
+Route::resource('/ringkasan', 'RingkasanController');
+
 
 
 Auth::routes();
