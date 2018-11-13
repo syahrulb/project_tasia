@@ -62,6 +62,10 @@
                         <input type="text" class="form-control" id="fax" name="fax" placeholder="Data fax">
                       </div>
                       <div class="form-group">
+                        <label for="exampleInputEmail1">Bidang Perusaahaan</label>
+                        <input type="text" class="form-control" id="bidang_perusahaan" name="bidang_perusahaan" placeholder="Bidang Perusahaan">
+                      </div>
+                      <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Data email">
                       </div>

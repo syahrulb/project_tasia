@@ -42,6 +42,7 @@ class InfoPerusahaanController extends Controller
                     'nama_perusahaan' => $request->get('nama_perusahaan'),
                     'alamat' => $request->get('alamat'),
                     'telefon' => $request->get('telefon'),
+                    'bidang_perusahaan' => $request->get('bidang_perusahaan'),
                     'fax' => $request->get('fax'),
                     'alamat' => $request->get('alamat'),
                     'email' => $request->get('email'),

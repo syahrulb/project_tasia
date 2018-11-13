@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class InfoPerusahaan extends Model
 {
     protected $fillable = [
-        'id_user','nama_perusahaan', 'alamat', 'telefon', 'fax', 'alamat', 'email', 'tanggal_mulai_data',
+        'id_user','nama_perusahaan','bidang_perusahaan', 'alamat', 'telefon', 'fax', 'alamat', 'email', 'tanggal_mulai_data',
     ];
 }
