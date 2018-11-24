@@ -18,6 +18,6 @@ class Rasio extends Model
 
     public function jenisRasio()
     {
-    	return $this->belongsTo('App\JenisRasio', 'janis_rasio');
+    	return $this->belongsTo('App\JenisRasio', 'jenis_rasio');
     }
 }

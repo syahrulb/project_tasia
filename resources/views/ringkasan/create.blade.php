@@ -17,11 +17,9 @@
                 <div class="form-group">
                   <label>Periode</label>
                   <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                  @foreach ($periode as $periode)
+                    <option>{{$periode->tanggal_awal}} - {{$periode->tanggal_akhir}}</option>
+                  @endforeach
                   </select>
                 </div>
             </div>
@@ -29,7 +27,7 @@
           <!-- radio -->
           <div class="form-group">
             <label>
-              <input type="checkbox" class="flat-red" disabled>
+              <input type="checkbox" class="flat-red">
               Sama dengan periode sebelumnya
             </label>
           </div>
@@ -59,10 +57,11 @@
                         <table class="table table-striped">
                           <tr>
                             <th style="width: 10px"></th>
-                            <th>Rasio Lancar</th>
+                            <th>Rasio Solvabilitas</th>
                             <th>Standar</th>
                             <th style="width: 80px"></th>
                           </tr>
+                          @foreach ($rasio1 as $rasio1)
                           <tr>
                             <td>
                               <!-- <div class="form-group"> -->
@@ -71,7 +70,7 @@
                                 </label>
                               <!-- </div> -->
                             </td>
-                            <td>checkbox</td>
+                            <td>{{$rasio1->nama_rasio}}</td>
                             <td>
                               <div>
                                 <select class="form-control">
@@ -89,58 +88,7 @@
                               </div>
                             </td>
                           </tr>
-                          <tr>
-                            <td>
-                              <!-- <div class="form-group"> -->
-                                <label>
-                                  <input type="checkbox" class="flat-red" disabled>
-                                </label>
-                              <!-- </div> -->
-                            </td>
-                            <td>checkbox</td>
-                            <td>
-                              <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <!-- <div class="form-group"> -->
-                                <label>
-                                  <input type="checkbox" class="flat-red" disabled>
-                                </label>
-                              <!-- </div> -->
-                            </td>
-                            <td>checkbox</td>
-                            <td>
-                              <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
-                              </div>
-                            </td>
-                          </tr>
+                          @endforeach
                         </table>
                       </div>
                       <!-- /.box-body -->
@@ -148,103 +96,6 @@
                   </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-4 col-xs-6">
-                  <!-- small box -->
-                  <div class="small-box bg-aqua">
-                    <div class="box" style="color: black;">
-                      <!-- /.box-header -->
-                      <div class="box-body no-padding">
-                        <table class="table table-striped">
-                          <tr>
-                            <th style="width: 10px"></th>
-                            <th>Rasio Solvabilitas</th>
-                            <th>Standar</th>
-                            <th style="width: 80px"></th>
-                          </tr>
-                          <tr>
-                            <td>
-                              <!-- <div class="form-group"> -->
-                                <label>
-                                  <input type="checkbox" class="flat-red" disabled>
-                                </label>
-                              <!-- </div> -->
-                            </td>
-                            <td>checkbox</td>
-                            <td>
-                              <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <!-- <div class="form-group"> -->
-                                <label>
-                                  <input type="checkbox" class="flat-red" disabled>
-                                </label>
-                              <!-- </div> -->
-                            </td>
-                            <td>checkbox</td>
-                            <td>
-                              <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <!-- <div class="form-group"> -->
-                                <label>
-                                  <input type="checkbox" class="flat-red" disabled>
-                                </label>
-                              <!-- </div> -->
-                            </td>
-                            <td>checkbox</td>
-                            <td>
-                              <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                      <!-- /.box-body -->
-                    </div>
-                  </div>
-                </div>
                 <!-- ./col -->
                 <div class="col-lg-4 col-xs-6">
                   <!-- small box -->
@@ -259,6 +110,7 @@
                             <th>Standar</th>
                             <th style="width: 80px"></th>
                           </tr>
+                          @foreach ($rasio2 as $rasio2)
                           <tr>
                             <td>
                               <!-- <div class="form-group"> -->
@@ -267,7 +119,7 @@
                                 </label>
                               <!-- </div> -->
                             </td>
-                            <td>checkbox</td>
+                            <td>{{$rasio2->nama_rasio}}</td>
                             <td>
                               <div>
                                 <select class="form-control">
@@ -285,58 +137,7 @@
                               </div>
                             </td>
                           </tr>
-                          <tr>
-                            <td>
-                              <!-- <div class="form-group"> -->
-                                <label>
-                                  <input type="checkbox" class="flat-red" disabled>
-                                </label>
-                              <!-- </div> -->
-                            </td>
-                            <td>checkbox</td>
-                            <td>
-                              <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <!-- <div class="form-group"> -->
-                                <label>
-                                  <input type="checkbox" class="flat-red" disabled>
-                                </label>
-                              <!-- </div> -->
-                            </td>
-                            <td>checkbox</td>
-                            <td>
-                              <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
-                              </div>
-                            </td>
-                          </tr>
+                          @endforeach
                         </table>
                       </div>
                       <!-- /.box-body -->
@@ -369,73 +170,18 @@
                         <table class="table table-striped">
                           <tr>
                             <th style="width: 10px"></th>
-                            <th>Rasio Lancar</th>
-                          </tr>
-                          <tr>
-                            <td>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                              </label>
-                            </td>
-                            <td>checkbox</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                              </label>
-                            </td>
-                            <td>checkbox</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                              </label>
-                            </td>
-                            <td>checkbox</td>
-                          </tr>
-                        </table>
-                      </div>
-                      <!-- /.box-body -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-xs-6">
-                  <!-- small box -->
-                  <div class="small-box bg-aqua">
-                    <div class="box" style="color: black;">
-                      <!-- /.box-header -->
-                      <div class="box-body no-padding">
-                        <table class="table table-striped">
-                          <tr>
-                            <th style="width: 10px"></th>
                             <th>Rasio Solvabilitas</th>
                           </tr>
+                          @foreach($diagram1 as $diagram1)
                           <tr>
                             <td>
                               <label>
                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
                               </label>
                             </td>
-                            <td>checkbox</td>
+                            <td>{{$diagram1['bentuk_diagram']}}</td>
                           </tr>
-                          <tr>
-                            <td>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                              </label>
-                            </td>
-                            <td>checkbox</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                              </label>
-                            </td>
-                            <td>checkbox</td>
-                          </tr>
+                          @endforeach
                         </table>
                       </div>
                       <!-- /.box-body -->
@@ -453,30 +199,16 @@
                             <th style="width: 10px"></th>
                             <th>Rasio Profitabilitas</th>
                           </tr>
+                          @foreach($diagram2 as $diagram2)
                           <tr>
                             <td>
                               <label>
                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
                               </label>
                             </td>
-                            <td>checkbox</td>
+                            <td>{{$diagram2['bentuk_diagram']}}</td>
                           </tr>
-                          <tr>
-                            <td>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                              </label>
-                            </td>
-                            <td>checkbox</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                              </label>
-                            </td>
-                            <td>checkbox</td>
-                          </tr>
+                          @endforeach
                         </table>
                       </div>
                       <!-- /.box-body -->

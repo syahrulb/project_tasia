@@ -4,15 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Akun;
-use App\Pengelompokan;
-use App\Periode;
-use App\Rasio;
-use App\JenisRasio;
-use App\MasterDiagram;
-
-
-class RingkasanController extends Controller
+class PengaturanDiagram extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +13,7 @@ class RingkasanController extends Controller
      */
     public function index()
     {
-        $akuns = Akun::all();
-        $pengelompokans = Pengelompokan::all();
-        return view('ringkasan.index', compact('akuns', 'pengelompokans'));
+        //
     }
 
     /**
@@ -33,14 +23,7 @@ class RingkasanController extends Controller
      */
     public function create()
     {
-        $periode = Periode::all();
-        $rasio1 = Rasio::where('jenis_rasio', 1)->get();
-        $rasio2 = Rasio::where('jenis_rasio', 2)->get();
-        $jenisRasio = JenisRasio::all();
-        $diagram1 = MasterDiagram::all();
-        $diagram2 = MasterDiagram::all();
-        // dd($rasio1  );
-        return view('ringkasan.create', compact('periode', 'rasio1', 'rasio2', 'jenisRasio', 'diagram1', 'diagram2'));
+        //
     }
 
     /**
@@ -51,13 +34,7 @@ class RingkasanController extends Controller
      */
     public function store(Request $request)
     {
-        $akuns['nama_akun'] = $request->nama_akun;
-        $input = $request->all();
-        $pengelompokan->kegunaan_akun = $request->input('kegunaan_akun');
-        $akuns = new AkunHasPengelompokan;
-        Akun::create($akuns);
-        Pengelompokan::create($pengelompokan);
-        return redirect('/ringkasan/create');
+        //
     }
 
     /**
