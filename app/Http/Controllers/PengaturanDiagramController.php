@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MasterDiagram;
+use App\JenisRasio;
 
 class PengaturanDiagramController extends Controller
 {
@@ -38,7 +39,15 @@ class PengaturanDiagramController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request[1]);
+        for ($i = 1; $i <= 2; $i++) {
+            $jenisRasio = JenisRasio::where('id_jenis_rasio', $i)->first();
+
+            $jenisRasio->master_diagram = $request[$i];
+            $jenisRasio->save();
+        }
+
+        return redirect('/pengaturan-diagram');
     }
 
     /**
