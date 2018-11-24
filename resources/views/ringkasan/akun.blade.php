@@ -22,7 +22,7 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <form class="" method="POST" action="{{ action('RingkasanController@store') }}">
+        <form class="" method="POST" action="{{ action('PengaturanAkunController@store') }}">
           {{csrf_field()}}
           <input type=hidden value="{{ csrf_token() }}">
         <div class="col-md-12">
@@ -32,9 +32,9 @@
             <div class="col-md-6">
                 <div class="form-group">
                   <label>Jenis Akun</label>
-                  <select name="kegunaan_akun" class="form-control">
+                  <select name="id_kelompok" class="form-control">
                   @foreach ($pengelompokans as $pengelompokan)
-                    <option value="{{$pengelompokan->kegunaan_akun}}">{{ $pengelompokan->kegunaan_akun }}</option>
+                    <option value="{{$pengelompokan->id_kelompok}}">{{ $pengelompokan->kegunaan_akun }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -53,7 +53,7 @@
               @foreach($akuns as $akun)
               <div class="form-group">
                 <label>
-                  <input type="checkbox"  name="nama_akun[]" class="flat-red" value="{{ $akun->nama_akun }}">
+                  <input type="checkbox"  name="id_akun[]" class="flat-red" value="{{ $akun->id_akun }}">
                   {{ $akun->nama_akun }}
                 </label>
               </div>

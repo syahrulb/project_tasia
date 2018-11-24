@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Akun;
+use App\Pengelompokan;
+use App\Periode;
+use App\Rasio;
+use App\JenisRasio;
+use App\MasterDiagram;
+use App\AkunHasPengelompokan;
 
 class PengaturanAkunController extends Controller
 {
@@ -13,7 +20,9 @@ class PengaturanAkunController extends Controller
      */
     public function index()
     {
-        //
+        $akuns = Akun::all();
+        $pengelompokans = Pengelompokan::all();
+        return view('ringkasan.akun', compact('akuns', 'pengelompokans'));
     }
 
     /**
@@ -34,7 +43,20 @@ class PengaturanAkunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // $akunhaskelompok['id_akun'] = implode(",", $request->id_akun);
+        $dataset = [];
+        foreach ($request->id_akun as $akun)
+        {
+            $dataset[] = [
+            'id_akun' => $akun,
+            'id_kelompok' => $request->id_kelompok,
+            ];
+            
+        }
+        // dd($dataset);
+        AkunHasPengelompokan::insert($dataset);
+        return redirect('/pengaturan-akun');
     }
 
     /**
