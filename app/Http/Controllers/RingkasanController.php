@@ -21,9 +21,7 @@ class RingkasanController extends Controller
      */
     public function index()
     {
-        $akuns = Akun::all();
-        $pengelompokans = Pengelompokan::all();
-        return view('ringkasan.index', compact('akuns', 'pengelompokans'));
+        // 
     }
 
     /**
@@ -51,13 +49,7 @@ class RingkasanController extends Controller
      */
     public function store(Request $request)
     {
-        $akuns['nama_akun'] = $request->nama_akun;
-        $input = $request->all();
-        $pengelompokan->kegunaan_akun = $request->input('kegunaan_akun');
-        $akuns = new AkunHasPengelompokan;
-        Akun::create($akuns);
-        Pengelompokan::create($pengelompokan);
-        return redirect('/ringkasan/create');
+        // 
     }
 
     /**

@@ -14,10 +14,10 @@
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/index', 'HomeController@index')->name('index');
 Route::resource('/setting-perusahaan', 'InfoPerusahaanController');
+
+Route::resource('/pengaturan-akun', 'PengaturanAkunController');
 Route::resource('/pengaturan-diagram', 'PengaturanDiagramController');
 Route::resource('/pengaturan-rasio', 'PengaturanRasioController');
-
-
 
 Auth::routes();
 
