@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Periode;
+use App\Rasio;
 
 class PengaturanRasioController extends Controller
 {
@@ -13,7 +15,11 @@ class PengaturanRasioController extends Controller
      */
     public function index()
     {
-        //
+        $periode = Periode::all();
+        $rasio1 = Rasio::where('jenis_rasio', 1)->get();
+        $rasio2 = Rasio::where('jenis_rasio', 2)->get();
+        // dd($rasio1  );
+        return view('ringkasan.rasio', compact('periode', 'rasio1', 'rasio2'));
     }
 
     /**
