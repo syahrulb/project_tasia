@@ -11,4 +11,14 @@ class Pengelompokan extends Model
     protected $fillable = [
         'kegunaan_akun'
     ];
+
+    public function hasAkun()
+    {
+        return $this->hasMany('App\AkunHasPengelompokan', 'id_kelompok');
+    }
+
+    public function hasRasio()
+    {
+        return $this->hasMany('App\RasioHasPengelompokan', 'id_kelompok');
+    }
 }
