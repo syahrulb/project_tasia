@@ -22,6 +22,9 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
+        <form class="" method="POST" action="{{ action('RingkasanController@store') }}">
+          {{csrf_field()}}
+          <input type=hidden value="{{ csrf_token() }}">
         <div class="col-md-12">
           <!-- MAP & BOX PANE -->
           <!-- /.box -->
@@ -29,16 +32,15 @@
             <div class="col-md-6">
                 <div class="form-group">
                   <label>Jenis Akun</label>
-                  <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                  <select name="kegunaan_akun" class="form-control">
+                  @foreach ($pengelompokans as $pengelompokan)
+                    <option value="{{$pengelompokan->kegunaan_akun}}">{{ $pengelompokan->kegunaan_akun }}</option>
+                    @endforeach
                   </select>
                 </div>
             </div>
           </div>
+          
           <!-- iCheck -->
           <div class="box box-success">
             <div class="col-md-12">
@@ -47,30 +49,22 @@
             <div class="box-body">
               <!-- Minimal style -->
 
-              <!-- Minimal red style -->
-
               <!-- checkbox -->
+              @foreach($akuns as $akun)
               <div class="form-group">
                 <label>
-                  <input type="checkbox" class="flat-red" disabled>
-                  Flat green skin checkbox
+                  <input type="checkbox"  name="nama_akun[]" class="flat-red" value="{{ $akun->nama_akun }}">
+                  {{ $akun->nama_akun }}
                 </label>
               </div>
+              @endforeach
 
-              <!-- radio -->
-              <div class="form-group">
-                <label>
-                  <input type="checkbox" class="flat-red" disabled>
-                  Flat green skin checkbox
-                </label>
-              </div>
-              
               <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
             </div>
             <div class="box-footer">
               Many more skins available. <a href="http://fronteed.com/iCheck/">Documentation</a>
             </div>
-          
       </div>
     </section>
   </div>

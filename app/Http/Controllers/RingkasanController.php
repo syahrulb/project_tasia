@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Akun;
+use App\Pengelompokan;
 
 class RingkasanController extends Controller
 {
@@ -13,8 +15,9 @@ class RingkasanController extends Controller
      */
     public function index()
     {
-        
-        return view('ringkasan.index');
+        $akuns = Akun::all();
+        $pengelompokans = Pengelompokan::all();
+        return view('ringkasan.index', compact('akuns', 'pengelompokans'));
     }
 
     /**
@@ -24,7 +27,7 @@ class RingkasanController extends Controller
      */
     public function create()
     {
-        return view('ringkasan.create');
+        // 
     }
 
     /**
@@ -35,7 +38,13 @@ class RingkasanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $akuns['nama_akun'] = $request->nama_akun;
+        $input = $request->all();
+        $pengelompokan->kegunaan_akun = $request->input('kegunaan_akun');
+        $akuns = new AkunHasPengelompokan;
+        Akun::create($akuns);
+        Pengelompokan::create($pengelompokan);
+        return redirect('/ringkasan/create');
     }
 
     /**
