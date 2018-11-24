@@ -66,7 +66,7 @@
                             <td>
                               <!-- <div class="form-group"> -->
                                 <label>
-                                  <input type="checkbox" class="flat-red" disabled>
+                                  <input type="checkbox" class="flat-red">
                                 </label>
                               <!-- </div> -->
                             </td>
@@ -115,7 +115,7 @@
                             <td>
                               <!-- <div class="form-group"> -->
                                 <label>
-                                  <input type="checkbox" class="flat-red" disabled>
+                                  <input type="checkbox" class="flat-red">
                                 </label>
                               <!-- </div> -->
                             </td>
