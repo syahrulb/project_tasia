@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MasterDiagram;
 
 class PengaturanDiagramController extends Controller
 {
@@ -13,7 +14,10 @@ class PengaturanDiagramController extends Controller
      */
     public function index()
     {
-        //
+        $diagram1 = MasterDiagram::all();
+        $diagram2 = MasterDiagram::all();
+
+        return view('ringkasan.diagram', compact('diagram1', 'diagram2'));
     }
 
     /**
@@ -34,7 +38,7 @@ class PengaturanDiagramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
