@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePeriodeHasAkunsTable extends Migration
 {
@@ -15,7 +15,7 @@ class CreatePeriodeHasAkunsTable extends Migration
     {
         Schema::create('periode_has_akuns', function (Blueprint $table) {
             $table->unsignedInteger('id_periode');
-            $table->foreign('id_periode')->references('id_periode')->on('periodes');
+            $table->foreign('id_periode')->references('id_periode')->on('periode');
             $table->unsignedInteger('id_akun');
             $table->foreign('id_akun')->references('id_akun')->on('akuns');
             $table->string('nama_akun', 1000);

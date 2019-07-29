@@ -1,9 +1,9 @@
-import { hooks } from '../utils/hooks';
-import { createDate, createUTCDate } from './date-from-array';
-import { daysInYear } from '../units/year';
-import { weekOfYear, weeksInYear, dayOfYearFromWeeks } from '../units/week-calendar-utils';
-import { YEAR, MONTH, DATE, HOUR, MINUTE, SECOND, MILLISECOND } from '../units/constants';
-import { createLocal } from './local';
+import {hooks} from '../utils/hooks';
+import {createDate, createUTCDate} from './date-from-array';
+import {daysInYear} from '../units/year';
+import {dayOfYearFromWeeks, weekOfYear, weeksInYear} from '../units/week-calendar-utils';
+import {DATE, HOUR, MILLISECOND, MINUTE, MONTH, SECOND, YEAR} from '../units/constants';
+import {createLocal} from './local';
 import defaults from '../utils/defaults';
 import getParsingFlags from './parsing-flags';
 
@@ -125,13 +125,13 @@ function dayOfYearFromWeekInfo(config) {
                 weekdayOverflow = true;
             }
         } else if (w.e != null) {
-            // local weekday -- counting starts from begining of week
+            // local weekday -- counting starts from beginning of week
             weekday = w.e + dow;
             if (w.e < 0 || w.e > 6) {
                 weekdayOverflow = true;
             }
         } else {
-            // default to begining of week
+            // default to beginning of week
             weekday = dow;
         }
     }

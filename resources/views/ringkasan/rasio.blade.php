@@ -59,7 +59,6 @@
                             <th style="width: 10px"></th>
                             <th>Rasio Solvabilitas</th>
                             <th>Standar</th>
-                            <th style="width: 80px"></th>
                           </tr>
                           @foreach ($rasio1 as $rasio1)
                           <tr>
@@ -73,18 +72,8 @@
                             <td>{{$rasio1->nama_rasio}}</td>
                             <td>
                               <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
+                                  <a href="{{ action('PengaturanRasioController@edit',$rasio1->id_rasio)}}"
+                                     class="btn btn-primary">Edit</a>
                               </div>
                             </td>
                           </tr>
@@ -108,7 +97,6 @@
                             <th style="width: 10px"></th>
                             <th>Rasio Profitabilitas</th>
                             <th>Standar</th>
-                            <th style="width: 80px"></th>
                           </tr>
                           @foreach ($rasio2 as $rasio2)
                           <tr>
@@ -122,18 +110,8 @@
                             <td>{{$rasio2->nama_rasio}}</td>
                             <td>
                               <div>
-                                <select class="form-control">
-                                  <option><</option>
-                                  <option>></option>
-                                  <option>=</option>
-                                  <option><=</option>
-                                  <option>>=</option>
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col-xs-12">
-                                <input type="text" class="form-control" placeholder="x">
+                                  <a href="{{ action('PengaturanRasioController@edit',$rasio2->id_rasio)}}"
+                                     class="btn btn-primary">Edit</a>
                               </div>
                             </td>
                           </tr>

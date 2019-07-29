@@ -5,3 +5,123 @@
 .lupa-password{
 	margin-left: 288px;
 }
+
+.user-panel > .image > img.img-circle {
+    height: 45px;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.margin-bottom-5 .checkbox {
+    margin-top: 7px;
+}
+
+.row-small {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.row-small .col-lg-1, .row-small .col-lg-10, .row-small .col-lg-11, .row-small .col-lg-12, .row-small .col-lg-2, .row-small .col-lg-3, .row-small .col-lg-4, .row-small .col-lg-5, .row-small .col-lg-6, .row-small .col-lg-7, .row-small .col-lg-8, .row-small .col-lg-9, .row-small .col-md-1, .row-small .col-md-10, .row-small .col-md-11, .row-small .col-md-12, .row-small .col-md-2, .row-small .col-md-3, .row-small .col-md-4, .row-small .col-md-5, .row-small .col-md-6, .row-small .col-md-7, .row-small .col-md-8, .row-small .col-md-9, .row-small .col-sm-1, .row-small .col-sm-10, .row-small .col-sm-11, .row-small .col-sm-12, .row-small .col-sm-2, .row-small .col-sm-3, .row-small .col-sm-4, .row-small .col-sm-5, .row-small .col-sm-6, .row-small .col-sm-7, .row-small .col-sm-8, .row-small .col-sm-9, .row-small .col-xs-1, .row-small .col-xs-10, .row-small .col-xs-11, .row-small .col-xs-12, .row-small .col-xs-2, .row-small .col-xs-3, .row-small .col-xs-4, .row-small .col-xs-5, .row-small .col-xs-6, .row-small .col-xs-7, .row-small .col-xs-8, .row-small .col-xs-9 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.table-wrapper {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.table-title {
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+
+.table-title h2 {
+    margin: 6px 0 0;
+    font-size: 22px;
+}
+
+.table-title .add-new {
+    float: right;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: none;
+    min-width: 100px;
+    border-radius: 50px;
+    line-height: 13px;
+}
+
+.table-title .add-new i {
+    margin-right: 4px;
+}
+
+table.table {
+    table-layout: fixed;
+}
+
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+}
+
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+table.table th:last-child {
+    width: 100px;
+}
+
+table.table td a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+}
+
+table.table td a.add {
+    color: #27C46B;
+}
+
+table.table td a.edit {
+    color: #FFC107;
+}
+
+table.table td a.delete {
+    color: #E34724;
+}
+
+table.table td i {
+    font-size: 19px;
+}
+
+table.table td a.add i {
+    font-size: 24px;
+    margin-right: -1px;
+    position: relative;
+    top: 3px;
+}
+
+table.table .form-control {
+    height: 32px;
+    line-height: 32px;
+    box-shadow: none;
+    border-radius: 2px;
+}
+
+table.table .form-control.error {
+    border-color: #f50000;
+}
+
+table.table td .add {
+    display: none;
+}
+
+.swal2-popup {
+    font-size: 1.6rem !important;
+}

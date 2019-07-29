@@ -15,9 +15,25 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/index', 'HomeController@index')->name('index');
 Route::resource('/setting-perusahaan', 'InfoPerusahaanController');
 
-Route::resource('/pengaturan-akun', 'PengaturanAkunController');
-Route::resource('/pengaturan-diagram', 'PengaturanDiagramController');
-Route::resource('/pengaturan-rasio', 'PengaturanRasioController');
+// laporan
+Route::get('/laporan/', 'LaporanController@index')->name('laporan');
+Route::get('/create-laporan/', 'LaporanController@generatechart')->name('create-laporan');
+Route::get('/pengaturan-rasio/pengaturan/', 'PengaturanRasioController@pengaturan');
+Route::get('/pengaturan-akun/pengaturan/', 'PengaturanAkunController@pengaturan');
+Route::get('/pengaturan-akun/getAkunHasPengelompokan/{id_kelompok}', 'PengaturanAkunController@getAkunHasPengelompokan');
+Route::get('/create-akun/', 'PengaturanAkunController@create');
+
+Route::resource('pengaturan-akun', 'PengaturanAkunController');
+Route::resource('pengaturan-diagram', 'PengaturanDiagramController');
+Route::resource('pengaturan-rasio', 'PengaturanRasioController');
+Route::resource('periode', 'PeriodeController');
+Route::post('/storeakun', 'PengaturanAkunController@storeakun');
+Route::post('/storerasio', 'PengaturanRasioController@storerasio');
+Route::post('/deleteKriteria', 'PengaturanRasioController@deleteKriteria');
+Route::post('/deleteAkunPeriode', 'PeriodeController@deleteAkunPeriode');
+Route::post('/generateChartRasio', 'LaporanController@generateChartRasio');
+
+
 
 Auth::routes();
 

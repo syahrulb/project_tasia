@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="default-src 'self'" http-equiv="Content-Security-Policy">
+	<title>Scriptable > Bubble | Chart.js sample</title>
+	<link href="../../dist/Chart.min.css" rel="stylesheet" type="text/css">
+	<link href="./content-security-policy.css" rel="stylesheet" type="text/css">
+	<script src="../../dist/Chart.min.js"></script>
+	<script src="../utils.js"></script>
+	<script src="content-security-policy.js"></script>
+</head>
+<body>
+<div class="content">
+	<div class="note">
+		In order to support a strict content security policy (<code>default-src 'self'</code>),
+		this page manually loads <code>Chart.min.css</code> and turns off the automatic style
+		injection by setting <code>Chart.platform.disableCSSInjection = true;</code>.
+	</div>
+	<div class="wrapper">
+		<canvas id="chart-0"></canvas>
+	</div>
+</div>
+</body>
+</html>

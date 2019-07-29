@@ -1,53 +1,50 @@
 //! moment.js
-//! version : 2.22.2
+//! version : 2.24.0
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
 
-import { hooks as moment, setHookCallback } from './lib/utils/hooks';
-
-moment.version = '2.22.2';
-
+import {hooks as moment, setHookCallback} from './lib/utils/hooks';
 import {
-    min,
-    max,
-    now,
+    createInvalid as invalid,
+    createInZone as parseZone,
+    createLocal as local,
+    createUnix as unix,
+    createUTC as utc,
     isMoment,
+    max,
+    min,
     momentPrototype as fn,
-    createUTC       as utc,
-    createUnix      as unix,
-    createLocal     as local,
-    createInvalid   as invalid,
-    createInZone    as parseZone
+    now
 } from './lib/moment/moment';
 
-import {
-    getCalendarFormat
-} from './lib/moment/calendar';
+import {getCalendarFormat} from './lib/moment/calendar';
 
 import {
     defineLocale,
-    updateLocale,
+    getLocale as localeData,
     getSetGlobalLocale as locale,
-    getLocale          as localeData,
-    listLocales        as locales,
-    listMonths         as months,
-    listMonthsShort    as monthsShort,
-    listWeekdays       as weekdays,
-    listWeekdaysMin    as weekdaysMin,
-    listWeekdaysShort  as weekdaysShort
+    listLocales as locales,
+    listMonths as months,
+    listMonthsShort as monthsShort,
+    listWeekdays as weekdays,
+    listWeekdaysMin as weekdaysMin,
+    listWeekdaysShort as weekdaysShort,
+    updateLocale
 } from './lib/locale/locale';
 
 import {
-    isDuration,
-    createDuration              as duration,
-    getSetRelativeTimeRounding  as relativeTimeRounding,
-    getSetRelativeTimeThreshold as relativeTimeThreshold
+    createDuration as duration,
+    getSetRelativeTimeRounding as relativeTimeRounding,
+    getSetRelativeTimeThreshold as relativeTimeThreshold,
+    isDuration
 } from './lib/duration/duration';
 
-import { normalizeUnits } from './lib/units/units';
+import {normalizeUnits} from './lib/units/units';
 
 import isDate from './lib/utils/is-date';
+
+moment.version = '2.24.0';
 
 setHookCallback(local);
 
@@ -88,7 +85,7 @@ moment.HTML5_FMT = {
     TIME: 'HH:mm',                                  // <input type="time" />
     TIME_SECONDS: 'HH:mm:ss',                       // <input type="time" step="1" />
     TIME_MS: 'HH:mm:ss.SSS',                        // <input type="time" step="0.001" />
-    WEEK: 'YYYY-[W]WW',                             // <input type="week" />
+    WEEK: 'GGGG-[W]WW',                             // <input type="week" />
     MONTH: 'YYYY-MM'                                // <input type="month" />
 };
 

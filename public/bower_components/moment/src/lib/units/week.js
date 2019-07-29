@@ -1,11 +1,10 @@
-import { addFormatToken } from '../format/format';
-import { addUnitAlias } from './aliases';
-import { addUnitPriority } from './priorities';
-import { addRegexToken, match1to2, match2 } from '../parse/regex';
-import { addWeekParseToken } from '../parse/token';
+import {addFormatToken} from '../format/format';
+import {addUnitAlias} from './aliases';
+import {addUnitPriority} from './priorities';
+import {addRegexToken, match1to2, match2} from '../parse/regex';
+import {addWeekParseToken} from '../parse/token';
 import toInt from '../utils/to-int';
-import { createLocal } from '../create/local';
-import { weekOfYear } from './week-calendar-utils';
+import {weekOfYear} from './week-calendar-utils';
 
 // FORMATTING
 
@@ -43,7 +42,7 @@ export function localeWeek (mom) {
 
 export var defaultLocaleWeek = {
     dow : 0, // Sunday is the first day of the week.
-    doy : 6  // The week that contains Jan 1st is the first week of the year.
+    doy: 6  // The week that contains Jan 6th is the first week of the year.
 };
 
 export function localeFirstDayOfWeek () {

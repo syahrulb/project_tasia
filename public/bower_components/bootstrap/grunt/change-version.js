@@ -4,7 +4,7 @@
 /* globals Set */
 /*!
  * Script to update version number references in the project.
- * Copyright 2015 Twitter, Inc.
+ * Copyright 2015-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 var fs = require('fs');
@@ -40,7 +40,7 @@ function walkAsync(directory, excludedDirectories, fileCallback, errback) {
           return;
         }
         if (stats.isSymbolicLink()) {
-          return;
+
         }
         else if (stats.isDirectory()) {
           process.nextTick(walkAsync, filepath, excludedDirectories, fileCallback, errback);
