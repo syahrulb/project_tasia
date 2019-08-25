@@ -387,6 +387,16 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
+            <a href="<?php echo url("jurnal");?>">
+                <i class="fa fa-bar-chart-o"></i> <span>Jurnal</span>
+          </a>
+        </li>
+        <li>
+            <a href="<?php echo url("tutupbuku");?>">
+                <i class="fa fa-bar-chart-o"></i> <span>Tutup</span>
+          </a>
+        </li>
+        <li>
             <a href="/create-laporan/">
                 <i class="fa fa-bar-chart-o"></i> <span>Laporan</span>
           </a>

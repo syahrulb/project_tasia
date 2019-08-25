@@ -59,8 +59,12 @@
                                             <tr>
                                                 <td>{{$no}}</td>
                                                 <td>{{$akun->nama_akun}}</td>
-                                                <td>{{$jenis_saldo[$akun->saldo_akun]}}</td>
-                                                <td>
+                                                @if($akun->saldo_akun==1)
+                                                <td>Debit</td>
+                                                @else
+                                                <td>Kredit</td>
+                                                @endif
+                                            <td>
                                             <span style="display: inline">
                                                 <a href="{{ action('PengaturanAkunController@edit',$akun->id_akun)}}"
                                                    class="btn btn-primary">Edit</a>

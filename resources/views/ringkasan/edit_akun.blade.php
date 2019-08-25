@@ -53,7 +53,7 @@
                                             <label> Saldo Normal :</label>
                                             <div class="input-group">
                                                 <select name="saldo_akun" class="form-control" style="width: 100%;">
-                                                    <option> -- Pilih Jenis Rasio --</option>
+                                                    <option> -- Pilih Jenis --</option>
                                                     <?php $jenis_saldo = array('1' => 'Debit', '-1' => 'Kredit')?>
                                                     @foreach ($jenis_saldo as $idx => $val)
                                                         <option value="{{ $idx }}"

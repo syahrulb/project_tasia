@@ -16,6 +16,14 @@ Route::get('/index', 'HomeController@index')->name('index');
 Route::resource('/setting-perusahaan', 'InfoPerusahaanController');
 
 // laporan
+Route::get('/tutupbuku/', 'LaporanController@tutupbuku')->name('tutupbuku');
+Route::get('/jurnal/', 'LaporanController@jurnal')->name('jurnal');
+Route::get('/tambahjurnal/', 'LaporanController@tambahjurnal')->name('tambahjurnal');
+Route::post('/simpanjurnal/', 'LaporanController@simpanjurnal')->name('simpanjurnal');
+Route::post('/simpandetailjurnal/', 'LaporanController@simpandetailjurnal')->name('simpandetailjurnal');
+Route::get('/detailjurnal/{id}', 'LaporanController@detailjurnal')->name('detailjurnal');
+
+
 Route::get('/laporan/', 'LaporanController@index')->name('laporan');
 Route::get('/create-laporan/', 'LaporanController@generatechart')->name('create-laporan');
 Route::get('/pengaturan-rasio/pengaturan/', 'PengaturanRasioController@pengaturan');
@@ -31,8 +39,8 @@ Route::post('/storeakun', 'PengaturanAkunController@storeakun');
 Route::post('/storerasio', 'PengaturanRasioController@storerasio');
 Route::post('/deleteKriteria', 'PengaturanRasioController@deleteKriteria');
 Route::post('/deleteAkunPeriode', 'PeriodeController@deleteAkunPeriode');
-Route::post('/generateChartRasio', 'LaporanController@generateChartRasio');
-
+Route::get('/generateChartRasio', 'LaporanController@generateChartRasio');
+Route::get('/generateChartRasio2', 'LaporanController@generateChartRasio2');
 
 
 Auth::routes();

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 02, 2019 at 09:21 AM
--- Server version: 5.7.26-0ubuntu0.18.10.1
--- PHP Version: 7.0.33-6+ubuntu18.10.1+deb.sury.org+3
+-- Generation Time: Jul 29, 2019 at 11:49 AM
+-- Server version: 5.7.26-0ubuntu0.19.04.1
+-- PHP Version: 7.0.33-8+ubuntu18.10.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -63,9 +63,8 @@ INSERT INTO `akuns` (`id_akun`, `nama_akun`, `saldo_akun`, `created_at`, `update
 (504, 'Biaya Utiliti', 1, '2018-11-11 15:00:00', '2018-11-11 15:00:00'),
 (505, 'Biaya Transportasi', 1, '2018-11-11 15:00:00', '2018-11-11 15:00:00'),
 (506, 'Biaya Penyusutan Kendaraan', 1, '2018-11-11 15:00:00', '2018-11-11 15:00:00'),
-(507, 'Biaya Penyusutan Kendaraan', 0, '2018-11-11 15:00:00', '2018-11-11 15:00:00'),
-(508, 'Biaya Asuransi', 0, '2018-11-11 15:00:00', '2018-11-11 15:00:00'),
-(509, 'Biaya Lain Lain', 0, '2018-11-11 15:00:00', '2018-11-11 15:00:00');
+(508, 'Biaya Asuransi', 1, '2018-11-11 15:00:00', '2019-07-02 04:17:54'),
+(509, 'Biaya Lain Lain', 1, '2018-11-11 15:00:00', '2019-07-02 04:18:01');
 
 -- --------------------------------------------------------
 
@@ -125,7 +124,10 @@ INSERT INTO `akun_has_pengelompokans` (`id`, `id_akun`, `id_kelompok`, `created_
 (56, 402, 1, NULL, NULL),
 (57, 403, 1, NULL, NULL),
 (58, 105, 2, NULL, NULL),
-(59, 106, 2, NULL, NULL);
+(59, 106, 2, NULL, NULL),
+(60, 501, 6, NULL, NULL),
+(61, 502, 6, NULL, NULL),
+(62, 509, 6, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -419,8 +421,8 @@ CREATE TABLE `periodes` (
 --
 
 INSERT INTO `periodes` (`id_periode`, `tanggal_awal`, `tanggal_akhir`, `created_at`, `updated_at`) VALUES
-(1, '2019-04-01', '2019-04-16', '2019-04-24 09:34:16', '2019-05-01 14:17:23'),
-(3, '2019-03-01', '2019-03-30', NULL, '2019-05-01 14:13:43');
+(1, '2019-04-01', '2019-04-16', '2019-04-24 09:34:16', '2019-05-07 15:15:16'),
+(3, '2019-03-01', '2019-03-30', NULL, '2019-05-07 15:16:07');
 
 -- --------------------------------------------------------
 
@@ -444,13 +446,15 @@ CREATE TABLE `periode_has_akuns` (
 --
 
 INSERT INTO `periode_has_akuns` (`id`, `id_periode`, `id_akun`, `nama_akun`, `saldo_awal`, `saldo_akhir`, `created_at`, `updated_at`) VALUES
-(1, 3, 101, '', 120, 120000, NULL, '2019-05-01 14:13:43'),
-(2, 3, 102, '', 130, 130000, NULL, '2019-05-01 14:13:43'),
-(4, 3, 104, '', 555, 4444444, NULL, '2019-05-01 14:13:44'),
-(5, 1, 101, '', 10000, 1000000, NULL, '2019-05-01 14:17:23'),
-(6, 1, 102, '', 10000, 1200000, NULL, '2019-05-01 14:17:23'),
-(7, 3, 105, '', 100000, 200000, NULL, NULL),
-(8, 3, 106, '', 50000, 100000, NULL, NULL);
+(1, 3, 101, '', 120, 120000, NULL, '2019-05-07 15:16:07'),
+(2, 3, 102, '', 130, 130000, NULL, '2019-05-07 15:16:07'),
+(4, 3, 104, '', 555, 4444444, NULL, '2019-05-07 15:16:07'),
+(5, 1, 101, '', 10000, 1000000, NULL, '2019-05-07 15:15:16'),
+(6, 1, 102, '', 10000, 1200000, NULL, '2019-05-07 15:15:16'),
+(7, 3, 105, '', 100000, 200000, NULL, '2019-05-07 15:16:07'),
+(8, 3, 106, '', 50000, 100000, NULL, '2019-05-07 15:16:07'),
+(11, 1, 105, '', 100000, 120000, NULL, '2019-05-07 15:15:16'),
+(12, 1, 502, '', 10000, 120000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -473,7 +477,7 @@ CREATE TABLE `rasios` (
 --
 
 INSERT INTO `rasios` (`id_rasio`, `nama_rasio`, `operator`, `nilai_batas`, `jenis_rasio`, `created_at`, `updated_at`) VALUES
-(1, 'Rasio Modal Sendiri terhadap Total Aktiva', '>', 2, 1, '2018-11-11 15:00:00', '2019-04-29 07:54:04'),
+(1, 'Rasio Modal Sendiri terhadap Total Aktiva', '>', 2, 1, '2018-11-11 15:00:00', '2019-07-02 03:46:04'),
 (2, 'Rasio Modal Sendiri dengan Aktiva Tetap', '<', 2, 1, '2018-11-11 15:00:00', '2019-05-01 14:11:07'),
 (3, 'Rasio Aktiva Tetap dengan Hutang Jangka Panjang', '<', 2, 1, '2018-11-11 15:00:00', '2018-11-11 15:00:00'),
 (4, 'Rasio Total Hutang terhadap Total Aktiva', '<', 2, 1, '2018-11-11 15:00:00', '2018-11-11 15:00:00'),
@@ -508,9 +512,11 @@ CREATE TABLE `rasio_has_kriteria` (
 --
 
 INSERT INTO `rasio_has_kriteria` (`id`, `id_rasio`, `operator`, `nilai_batas`, `kriteria`, `updated_at`) VALUES
-(1, 1, '<', 12, 'sadas', '2019-04-29 07:54:04'),
+(1, 1, '<', 12, 'sadas', '2019-07-02 03:46:04'),
 (12, 29, '>', 1212, 'saadasd', '2019-04-27 17:23:43'),
-(13, 2, '<', 2, 'Bagus', '2019-05-01 14:11:07');
+(13, 2, '<', 2, 'Bagus', '2019-05-01 14:11:07'),
+(14, 1, '<', 14, 'sdasad', '2019-07-02 03:46:04'),
+(15, 1, '<', 15, 'dasda', '2019-07-02 03:46:04');
 
 -- --------------------------------------------------------
 
@@ -594,7 +600,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `kode_pegawai`, `name`, `email`, `email_verified_at`, `username`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Aqshal', 'aqshalfajarputra0226@gmail.com', NULL, 'aqshal', '$2y$10$NcL8IZVxZX319ZyDeWb9eum.9ctsx4MTPUcJ74SfQsAVdyTrRsoga', 'aktif', NULL, '2019-04-24 03:24:59', '2019-04-24 03:24:59');
+(1, 0, 'Aqshal', 'aqshalfajarputra0226@gmail.com', NULL, 'aqshal', '$2y$10$NcL8IZVxZX319ZyDeWb9eum.9ctsx4MTPUcJ74SfQsAVdyTrRsoga', 'aktif', 'IbXpvtz5DxhbIQkT3KSZlcvq4YWXBEV4HkKDQ5pIIkSv4CZlYL2miQWLCQ0r', '2019-04-24 03:24:59', '2019-04-24 03:24:59');
 
 --
 -- Indexes for dumped tables
@@ -781,7 +787,7 @@ ALTER TABLE `akuns`
 -- AUTO_INCREMENT for table `akun_has_pengelompokans`
 --
 ALTER TABLE `akun_has_pengelompokans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `appointments`
 --
@@ -851,7 +857,7 @@ ALTER TABLE `periodes`
 -- AUTO_INCREMENT for table `periode_has_akuns`
 --
 ALTER TABLE `periode_has_akuns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `rasios`
 --
@@ -861,7 +867,7 @@ ALTER TABLE `rasios`
 -- AUTO_INCREMENT for table `rasio_has_kriteria`
 --
 ALTER TABLE `rasio_has_kriteria`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `rasio_has_pengelompokans`
 --

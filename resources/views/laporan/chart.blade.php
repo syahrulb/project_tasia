@@ -135,7 +135,7 @@
                                                     var CSRF_TOKEN = $('input[name="_token"]').attr('value');
                                                     $.ajax({
                                                         url: '/generateChartRasio',
-                                                        type: 'POST',
+                                                        type: 'GET',
                                                         data: {
                                                             _token: CSRF_TOKEN,
                                                             tanggal: $("#reservation").val(),
