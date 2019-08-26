@@ -19,25 +19,24 @@ class LaporanController extends Controller
     function tutupbuku()
     {
         $periode=DB::table("periodes")->where("aktif","=","1")->first();
-
         echo "<br/>";
         print_r($periode);
         echo "<br/>";
 
         $jurnal=DB::table("jurnals")->
                     join("jurnals_has_akuns","jurnals_has_akuns.jurnal_id","=","jurnals.id")->
-                    join('akuns', 'akuns.id_akun', '=', 'jurnals_has_akuns.akuns_id')-> 
+                    join('akuns', 'akuns.id_akun', '=', 'jurnals_has_akuns.akuns_id')->
                     select('jurnals_has_akuns.*', 'akuns.nama_akun',"akuns.saldo_akun")->
                     where("id_periode","=",$periode->id_periode)->get();
-        
-        
+
+
         $tanggalAwalBaru=date("Y-m-d",strtotime($periode->tanggal_akhir." + 1 day"));
         $tanggalAkhirBaru=date("Y-m-d",strtotime($tanggalAwalBaru." + 30 day"));
         echo $tanggalAwalBaru.",". $tanggalAkhirBaru."<br/>";
 
         $idBaru=DB::table('periodes')->insertGetId(
             [
-             'tanggal_awal' => $tanggalAwalBaru, 
+             'tanggal_awal' => $tanggalAwalBaru,
              'tanggal_akhir' => $tanggalAkhirBaru,
              'created_at'=>date("Y-m-d h:i:s"),
              'updated_at'=>date("Y-m-d h:i:s"),
@@ -66,7 +65,7 @@ class LaporanController extends Controller
                 $saldoA[$dtl->akuns_id]=$nt;
             }
             else {
-                $saldoA[$dtl->akuns_id]+=$nt;   
+                $saldoA[$dtl->akuns_id]+=$nt;
             }
             /*
             $saldo=$perideha->saldo_akhir+$nt;
@@ -82,7 +81,7 @@ class LaporanController extends Controller
                 ->
             */
         }
-        
+
 
         foreach($saldoA as $key => $value)
         {
@@ -111,7 +110,7 @@ class LaporanController extends Controller
             $in=$perideha2[$i];
             DB::table("periode_has_akuns")->insertGetId(
                 [
-                 'id_periode' => $idBaru, 
+                 'id_periode' => $idBaru,
                  'id_akun' => $in->id_akun,
                  'saldo_awal'=>$in->saldo_akhir,
                  'saldo_akhir'=>0,
@@ -133,11 +132,11 @@ class LaporanController extends Controller
         //$rasios = Rasio::all();
         $data=array();
         $jurnal=DB::table('jurnals')->get();
-        
+
         for ($i=0;$i<count($jurnal);$i++)
         {
             $detail=DB::table('jurnals_has_akuns')
-                     ->join('akuns', 'akuns.id_akun', '=', 'jurnals_has_akuns.akuns_id') 
+                     ->join('akuns', 'akuns.id_akun', '=', 'jurnals_has_akuns.akuns_id')
                     ->where("jurnal_id","=",$jurnal[$i]->id)
                     ->select('jurnals_has_akuns.*', 'akuns.nama_akun')
                     ->get();
@@ -167,7 +166,7 @@ class LaporanController extends Controller
         $periode=$request->periode;
         DB::table('jurnals')->insert(
             [
-             'tanggal_jurnal' => $tanggal, 
+             'tanggal_jurnal' => $tanggal,
              'no_bukti' => $nobukti,
              'keterangan' => $keterangan,
              'jenis'=>$jenis,
@@ -187,7 +186,7 @@ class LaporanController extends Controller
         $akun=$request->akun;
         $jumlah=$request->jumlah;
         $periode=$request->periode;
-        
+
         $debet=0;
         $kredit=0;
         if ($jenis=="Debet")
@@ -198,10 +197,10 @@ class LaporanController extends Controller
             $kredit=$jumlah;
         }
 
-        
+
         DB::table('jurnals_has_akuns')->insert(
             [
-             'jurnal_id' => $id, 
+             'jurnal_id' => $id,
              'akuns_id' => $akun,
              'debet' => $debet,
              'kredit'=>$kredit
@@ -244,7 +243,7 @@ class LaporanController extends Controller
 
     //     //$atas="";
     //     //$bawah="";
-            
+
     //     $atas=DB::table("rasio_has_pengelompokans")
     //         ->where("id_rasio","=",$ratio)
     //         ->where("posisi",'=',"1")
@@ -300,7 +299,7 @@ class LaporanController extends Controller
     //         ->where("id_akun",'LIKE',$atas."%")
     //         ->select("SUM(periode_has_akuns.saldo_akhir) as saldo_akhir")
     //         ->get();
-        
+
     //     echo "<br/>";
     //     print_r($atas);
     //     */
@@ -367,14 +366,14 @@ class LaporanController extends Controller
 
                 $arrLabels[$key] = $value['tanggal'];
 
-                
+
                 // echo $key.",".$rasio."<br/>";
                 $ratio=$rasio;
                 //echo $ratio.",".$periode."<br/>";
 
                 //$atas="";
                 //$bawah="";
-                    
+
                 $atas=DB::table("rasio_has_pengelompokans")
                     ->where("id_rasio","=",$ratio)
                     ->where("posisi",'=',"1")
@@ -429,7 +428,7 @@ class LaporanController extends Controller
                     $hasil = $hasil=$jumlah/$jumlahA;
                 }
                 // echo $hasil."<br/>";
-                
+
 
                 $arrRasio[$rasio][$key]['rasio']=$hasil;
                 foreach ($arrKriteriaNew[$rasio] as $k => $v) {
@@ -445,10 +444,10 @@ class LaporanController extends Controller
                     $arrKetError['id_periode'] = $key;
                     $arrKetError['periode'] = $value['tanggal'];
                     $arrKetError['rasio'] = $value['nama_rasio'];
-                    
+
                     break;
                 } else {
-                    echo "in here2<br/>"; 
+                    echo "in here2<br/>";
                     echo $key.",".$value['total_saldo_akhir'][0].",".$value['total_saldo_akhir'][1]."<br/>";
                     $arrRasio[$rasio][$key]['rasio'] = $value['total_saldo_akhir'][0] / $value['total_saldo_akhir'][1];
                     foreach ($arrKriteriaNew[$rasio] as $k => $v) {
@@ -463,7 +462,7 @@ class LaporanController extends Controller
             }
 
         }
-         
+
 
         if ($error) {
             $arrChart['error'] = $error;
@@ -477,11 +476,11 @@ class LaporanController extends Controller
                 $index++;
             }
 
-            
+
             $arrChart['data'] = $arrRasio;
             $arrChart['labels'] = $arrNew;
             $arrChart['error'] = $error;
-             
+
             /*
             foreach ($arrRasio as $key => $value)
             {
