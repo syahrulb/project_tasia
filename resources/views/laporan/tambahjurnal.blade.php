@@ -53,8 +53,8 @@
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Jenis</label>
                                         <select class="form-control" name="jenis">
-                                            <option value="Jurnal Penutup">Jurnal Penutup</option>
-                                            <option value="Jurnal Penyesuaian">Jurnal Penyesuaian</option>
+                                            <option value="Jurnal Penutup">Jurnal Manual</option>
+                                            <!-- <option value="Jurnal Penyesuaian">Jurnal Penyesuaian</option> -->
                                         </select>
                                       </div>
                                       <div class="form-group">

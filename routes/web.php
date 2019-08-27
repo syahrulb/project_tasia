@@ -41,6 +41,7 @@ Route::post('/deleteKriteria', 'PengaturanRasioController@deleteKriteria');
 Route::post('/deleteAkunPeriode', 'PeriodeController@deleteAkunPeriode');
 Route::get('/generateChartRasio', 'LaporanController@generateChartRasio');
 Route::get('/generateChartRasio2', 'LaporanController@generateChartRasio2');
+Route::post('/generateCharttopdf', 'LaporanController@generateCharttopdf');
 
 
 Auth::routes();

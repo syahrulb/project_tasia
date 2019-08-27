@@ -33,9 +33,10 @@ class PengaturanAkunController extends Controller
 
     public function pengaturan()
     {
-        $akuns = Akun::all();
+        $akuns = akun::all();
         $pengelompokans = Pengelompokan::all();
         $akun_has_pengelompokans = AkunHasPengelompokan::all();
+        
         return view('ringkasan.akun', compact('akuns', 'pengelompokans', 'akun_has_pengelompokans'));
     }
 
@@ -83,7 +84,7 @@ class PengaturanAkunController extends Controller
 
         // dd($dataset);
 
-        return redirect('/pengaturan-akun');
+        return redirect('/pengaturan-akun/pengaturan');
     }
 
     public function storeakun(Request $request)
@@ -112,6 +113,18 @@ class PengaturanAkunController extends Controller
     public function show($id)
     {
         //
+       
+        // $akuns = akun::all();
+        // $pengelompokans = Pengelompokan::find($id);
+        // $akun_has_pengelompokans = AkunHasPengelompokan::all();
+        // if ($akun->id_akun == $value['id_akun'])
+        // // return view('ringkasan.akun', compact('akuns', 'pengelompokans', 'akun_has_pengelompokans'));
+        // if ($id == "1" )
+        // {
+        //     $akuns = DB::table("akuns")
+        //         ->where("id_akun", "like", "1%");
+        // }
+        // return view('ringkasan.akun', compact('akuns', 'pengelompokans', 'akun_has_pengelompokans'));
     }
 
     /**
@@ -171,6 +184,8 @@ class PengaturanAkunController extends Controller
         $akuns = Akun::all();
         $akun_has_pengelompokans = AkunHasPengelompokan::where('id_kelompok', $id_kelompok)->get()->toArray();
         foreach ($akuns as $key => $akun) {
+           
+
             $same = false;
             foreach ($akun_has_pengelompokans as $k => $value) {
                 if ($akun->id_akun == $value['id_akun']) {
@@ -179,27 +194,71 @@ class PengaturanAkunController extends Controller
                 }
             }
 
-            if ($same == true) {
-                echo '
-                      <div class="form-group">
-                        <label>
-                          <input type="hidden" name="id_akun[' . $key . '][id_rasio_akun]" value="' . $id_rasio_akun . '">
-                          <input type="checkbox"  name="id_akun[' . $key . '][id_akun]" class="flat-red" value="' . $akun->id_akun . '" checked="checked">
-                          ' . $akun->nama_akun . '
-                        </label>
-                      </div>
-                      ';
-            } else {
-                echo '
-                      <div class="form-group">
-                        <label>
-                          <input type="hidden" name="id_akun[' . $key . '][id_rasio_akun]" value="">
-                          <input type="checkbox"  name="id_akun[' . $key . '][id_akun]" class="flat-red" value="' . $akun->id_akun . '">
-                          ' . $akun->nama_akun . '
-                        </label>
-                      </div>
-                      ';
+            //echo $akun->id_akun."<br/>";
+            $cetak=false;
+            $depan=substr($akun->id_akun,0,1);
+            // $depan1=substr($akun->id_akun,1,2);
+            // echo $depan1;
+            
+            
+            if ($id_kelompok=="1" || $id_kelompok=="2" || $id_kelompok=="3" || $id_kelompok=="8")
+            {
+                if ($depan=="1")
+                {
+                    $cetak=true;
+                }   
             }
+            elseif ($id_kelompok=="4") {
+              if($depan=="3")
+              {
+                $cetak=true;
+              }
+            }
+            elseif ($id_kelompok=="5" || $id_kelompok=="6" ) {
+              if ($depan=="2") {
+                $cetak=true;
+              }
+            }
+           elseif ($id_kelompok=="13") {
+             if ($depan=="5")
+             {
+              $cetak=true;
+             }
+           }
+          else
+          {
+            $cetak=true;
+          }
+
+           
+
+            
+            
+            if ($cetak)
+            {
+               if ($same == true) {
+                    echo '
+                          <div class="form-group">
+                            <label>
+                              <input type="hidden" name="id_akun[' . $key . '][id_rasio_akun]" value="' . $id_rasio_akun . '">
+                              <input type="checkbox"  name="id_akun[' . $key . '][id_akun]" class="flat-red" value="' . $akun->id_akun . '" checked="checked">
+                              ' . $akun->nama_akun . '
+                            </label>
+                          </div>
+                          ';
+                } else {
+                    echo '
+                          <div class="form-group">
+                            <label>
+                              <input type="hidden" name="id_akun[' . $key . '][id_rasio_akun]" value="">
+                              <input type="checkbox"  name="id_akun[' . $key . '][id_akun]" class="flat-red" value="' . $akun->id_akun . '">
+                              ' . $akun->nama_akun . '
+                            </label>
+                          </div>
+                          ';
+                }  
+            }
+           
         }
     }
 }

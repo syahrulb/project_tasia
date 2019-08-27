@@ -83,6 +83,7 @@
   <script type="text/javascript">
       function changeSelectedAkun() {
           var isi = $("#data_kelompok").val();
+          //console.log(isi);
           $('#data_akun').load('/pengaturan-akun/getAkunHasPengelompokan/' + isi);
       }
   </script>

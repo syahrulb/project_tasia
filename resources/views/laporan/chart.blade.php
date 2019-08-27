@@ -44,7 +44,9 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Laporan</h3>
                             <div class="box-tools">
-                                <button onclick="printToPDF()" class="btn btn-primary">Print to PDF</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLaporan">Print to PDF</button>
+
+                                <!-- <button onclick="printToPDF()" class="btn btn-primary">Print to PDF</button> -->
                             </div>
                         </div>
 
@@ -224,7 +226,7 @@
 
                                                                 if ($("#jenis").val() == 'bar') {
                                                                     chart = new Chart(ctx, {
-                                                                        type: 'horizontalBar',
+                                                                        type: 'bar',
                                                                         data: dataChart,
                                                                         options: options
                                                                     });
@@ -305,4 +307,40 @@
         </section>
     </div>
 
+{{--<!-- .modal -->--}}
+<div id="modalLaporan" class="modal fade in" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Laporan</h4>
+      </div>
+      <form id='frm_pdf' target="_blank" method = 'POST' action="{{ url('/generateCharttopdf') }}" enctype='multipart/form-data'>
+        {{ csrf_field() }}
+        <div class="modal-body">
+            <div class="row">
+                <div class="form-group">
+                  <label for="tipe" class="control-label col-lg-3 text-bold">Rasio File :</label>
+                  <div class="col-lg-8">
+                        <select id="rasios" name="tipe" class="select2" class="form-control">
+                            @foreach($jenis_rasios as $item)
+                                <option value="{{$item->id_jenis_rasio}}"> {{$item->jenis_rasio }} </option>
+                            @endforeach
+                        </select>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Tutup</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
+        </div>
+      </form>
+    </div>
+    {{--<!-- /.modal-content -->--}}
+  </div>
+  {{--<!-- /.modal-dialog -->--}}
+</div>
+{{--<!-- /.modal -->--}}
 @endsection

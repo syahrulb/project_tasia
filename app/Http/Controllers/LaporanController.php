@@ -6,6 +6,7 @@ use App\JenisRasio;
 use App\Rasio;
 use App\Periode;
 use App\Akun;
+use App\external\clsrasio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,10 +16,16 @@ class LaporanController extends Controller
     {
         return view('laporan.index');
     }
-
+    public function generateCharttopdf(Request $request)
+    {
+      $datas = $request->all();
+      $class = new clsrasio($datas['tipe']);
+      dd($class->responseTipe());
+    }
     function tutupbuku()
     {
         $periode=DB::table("periodes")->where("aktif","=","1")->first();
+
         echo "<br/>";
         print_r($periode);
         echo "<br/>";
@@ -363,80 +370,97 @@ class LaporanController extends Controller
             foreach ($periode as $key => $value) {
                 //print_r($value);
                 //echo "<br/><br/>";
+                if (sizeof($value['total_saldo_akhir']) < 2) {
+                    $error = true;
+                    $arrKetError['id_periode'] = $key;
+                    $arrKetError['periode'] = $value['tanggal'];
+                    $arrKetError['rasio'] = $value['nama_rasio'];
 
-                $arrLabels[$key] = $value['tanggal'];
-
-
-                // echo $key.",".$rasio."<br/>";
-                $ratio=$rasio;
-                //echo $ratio.",".$periode."<br/>";
-
-                //$atas="";
-                //$bawah="";
-
-                $atas=DB::table("rasio_has_pengelompokans")
-                    ->where("id_rasio","=",$ratio)
-                    ->where("posisi",'=',"1")
-                    ->first();
-
-                $bawah=DB::table("rasio_has_pengelompokans")
-                    ->where("id_rasio","=",$ratio)
-                    ->where("posisi",'=',"2")
-                    ->first();
-
-                // echo "<br/>";
-                // print_r($atas);
-                // echo "<br/>";
-                // print_r($bawah);
-                // echo "<br/><br/>";
-
-                $atasN=DB::table("periode_has_akuns")
-                    ->join("akun_has_pengelompokans","periode_has_akuns.id_akun","akun_has_pengelompokans.id_akun")
-                    ->where("id_periode","=",$key)
-                    ->where("akun_has_pengelompokans.id_kelompok","=",$atas->id_kelompok)
-                    ->get();
-
-                // echo "<br/>Atas<br/>";
-                // print_r($atasN);
-                $jumlah=0;
-                for ($i=0;$i<count($atasN);$i++)
-                {
-                    $jumlah+=$atasN[$i]->saldo_akhir;
+                    break;
                 }
-                // echo "<br/>".$jumlah."<br/><br/>";
-
-                $bawahN=DB::table("periode_has_akuns")
-                    ->join("akun_has_pengelompokans","periode_has_akuns.id_akun","akun_has_pengelompokans.id_akun")
-                    ->where("id_periode","=",$key)
-                    ->where("akun_has_pengelompokans.id_kelompok","=",$bawah->id_kelompok)
-                    ->get();
-
-                // echo "<br/>Bawah<br/>";
-                // print_r($bawahN);
-                 $jumlahA=0;
-                for ($i=0;$i<count($bawahN);$i++)
-                {
-                    $jumlahA+=$bawahN[$i]->saldo_akhir;
-                }
-                // echo "<br/>".$jumlahA."<br/><br/>";
-
-                if ($rasio == 1)
-                {
-                    $hasil=$jumlah/$jumlahA;
-                }
-                else if ($rasio == 2) {
-                    $hasil = $hasil=$jumlah/$jumlahA;
-                }
-                // echo $hasil."<br/>";
+                else {
+                    //awal
+                     $arrLabels[$key] = $value['tanggal'];
 
 
-                $arrRasio[$rasio][$key]['rasio']=$hasil;
-                foreach ($arrKriteriaNew[$rasio] as $k => $v) {
-                        if (version_compare($arrRasio[$rasio][$key]['rasio'], $v['nilai_batas'], $v['operator'])) {
-                            $arrRasio[$rasio][$key]['kriteria'] = $v['kriteria'];
-                            break;
+                        $ratio=$rasio;
+                        $atas=DB::table("rasio_has_pengelompokans")
+                            ->where("id_rasio","=",$ratio)
+                            ->where("posisi",'=',"1")
+                            ->first();
+
+                        $bawah=DB::table("rasio_has_pengelompokans")
+                            ->where("id_rasio","=",$ratio)
+                            ->where("posisi",'=',"2")
+                            ->first();
+
+                        $tengah = DB::table("rasio_has_pengelompokans")
+                            ->where("id_rasio","=",$ratio)
+                            ->where("posisi",'=',"3")
+                            ->first();
+
+                        $atasN=DB::table("periode_has_akuns")
+                            ->join("akun_has_pengelompokans","periode_has_akuns.id_akun","akun_has_pengelompokans.id_akun")
+                            ->where("id_periode","=",$key)
+                            ->where("akun_has_pengelompokans.id_kelompok","=",$atas->id_kelompok)
+                            ->get();
+
+                        $jumlah=0;
+                        for ($i=0;$i<count($atasN);$i++)
+                        {
+                            $jumlah+=$atasN[$i]->saldo_akhir;
                         }
+
+                        $bawahN=DB::table("periode_has_akuns")
+                            ->join("akun_has_pengelompokans","periode_has_akuns.id_akun","akun_has_pengelompokans.id_akun")
+                            ->where("id_periode","=",$key)
+                            ->where("akun_has_pengelompokans.id_kelompok","=",$bawah->id_kelompok)
+                            ->get();
+
+                         $jumlahA=0;
+
+                        for ($i=0;$i<count($bawahN);$i++)
+                        {
+                            $jumlahA+=$bawahN[$i]->saldo_akhir;
+                        }
+
+
+
+                        // $operasi=10;
+
+                        if ($rasio!=10)
+                        {
+                            $hasil=$jumlah/$jumlahA;
+
+
+                        }
+                       else
+                       {
+                        $tengahN=DB::table("periode_has_akuns")
+                            ->join("akun_has_pengelompokans","periode_has_akuns.id_akun","akun_has_pengelompokans.id_akun")
+                            ->where("id_periode","=",$key)
+                            ->where("akun_has_pengelompokans.id_kelompok","=",$tengah->id_kelompok)
+                            ->get();
+
+                        $jumlahO=0;
+                        for ($i=0;$i<count($atasN);$i++)
+                        {
+                            $jumlah+=$tengahN[$i]->saldo_akhir;
+                        }
+                        $hasil=($jumlah+$jumlahO)/$jumlahA;
+                        // echo $hasil;
+                        }
+                        $arrRasio[$rasio][$key]['rasio']=$hasil;
+                        foreach ($arrKriteriaNew[$rasio] as $k => $v) {
+                                if (version_compare($arrRasio[$rasio][$key]['rasio'], $v['nilai_batas'], $v['operator'])) {
+                                    $arrRasio[$rasio][$key]['kriteria'] = $v['kriteria'];
+                                    break;
+                                }
+                        }
+
+                    //akhir
                 }
+
                 //akhir
                 /*
                 if (sizeof($value['total_saldo_akhir']) < 2) {
@@ -447,8 +471,6 @@ class LaporanController extends Controller
 
                     break;
                 } else {
-                    echo "in here2<br/>";
-                    echo $key.",".$value['total_saldo_akhir'][0].",".$value['total_saldo_akhir'][1]."<br/>";
                     $arrRasio[$rasio][$key]['rasio'] = $value['total_saldo_akhir'][0] / $value['total_saldo_akhir'][1];
                     foreach ($arrKriteriaNew[$rasio] as $k => $v) {
                         if (version_compare($arrRasio[$rasio][$key]['rasio'], $v['nilai_batas'], $v['operator'])) {
@@ -491,9 +513,7 @@ class LaporanController extends Controller
             }*/
             //print_r($arrRasio);
         }
-
         echo json_encode($arrChart);
-
-
     }
+
 }
