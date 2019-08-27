@@ -13,5 +13,5 @@ class Akun extends Model
         'saldo_akun',
     ];
     public function akunhaspengelompokan()
-    {return $this->hasMany('App\AkunHasPengelompokan', 'id_akun');}
+    {return $this->hasMany('App\AkunHasPengelompokan', 'id_akun','id');}
 }
