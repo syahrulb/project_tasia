@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\JenisRasio;
 use App\Rasio;
 use App\Periode;
@@ -19,8 +20,13 @@ class LaporanController extends Controller
     public function generateCharttopdf(Request $request)
     {
       $datas = $request->all();
-      $class = new clsrasio($datas['tipe']);
-      dd($class->responseTipe());
+      $rasio = new clsrasio($datas['tipe']);
+      $jenis_rasio = JenisRasio::find($datas['tipe']);
+      $datas = $rasio->responseTipe();
+  		// $pdf = PDF::loadView('laporan.pdf', compact('datas','kriteria','jenis_rasio'));
+  		// $pdf->setPaper('A4', 'landscape');
+  		// return $pdf->download('laporan-nota-beli.pdf');
+      return view('laporan.pdf',compact('datas','kriteria','jenis_rasio'));
     }
     function tutupbuku()
     {
@@ -355,11 +361,11 @@ class LaporanController extends Controller
             $arrRasio[$val['id_rasio']][$val['id_periode']]['nama_rasio'] = $val['nama_rasio'];
             $arrRasio[$val['id_rasio']][$val['id_periode']]['total_saldo_akhir'][] = $val['total_saldo_akhir'];
         }
-
         $arrKriteriaNew = array();
         foreach ($arrKriteria as $key => $val) {
             $arrKriteriaNew[$val['id_rasio']][] = $val;
         }
+        // dd($arrKriteriaNew);
 
         $error = false;
         $arrKetError = array();
@@ -423,16 +429,11 @@ class LaporanController extends Controller
                         {
                             $jumlahA+=$bawahN[$i]->saldo_akhir;
                         }
-
-
-
                         // $operasi=10;
 
                         if ($rasio!=10)
                         {
-                            $hasil=$jumlah/$jumlahA;
-
-
+                            $hasil= ($jumlah||$jumlahA)==0?0:$jumlah/$jumlahA;
                         }
                        else
                        {
@@ -498,6 +499,7 @@ class LaporanController extends Controller
                 $index++;
             }
 
+            // dd($arrRasio);
 
             $arrChart['data'] = $arrRasio;
             $arrChart['labels'] = $arrNew;

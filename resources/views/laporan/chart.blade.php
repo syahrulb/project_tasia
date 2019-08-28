@@ -182,7 +182,7 @@
                                                                     });
                                                                     index++;
                                                                 });
-
+                                                                console.log(datasets);
                                                                 var dataChart = {
                                                                     labels: datas.labels,
                                                                     datasets: datasets
@@ -318,12 +318,13 @@
       </div>
       <form id='frm_pdf' target="_blank" method = 'POST' action="{{ url('/generateCharttopdf') }}" enctype='multipart/form-data'>
         {{ csrf_field() }}
+        <input type="hidden" id="" name="" value="">
         <div class="modal-body">
             <div class="row">
                 <div class="form-group">
                   <label for="tipe" class="control-label col-lg-3 text-bold">Rasio File :</label>
                   <div class="col-lg-8">
-                        <select id="rasios" name="tipe" class="select2" class="form-control">
+                        <select id="rasios" name="tipe" class="select2" class="form-control" onchange="ubahrasio()">
                             @foreach($jenis_rasios as $item)
                                 <option value="{{$item->id_jenis_rasio}}"> {{$item->jenis_rasio }} </option>
                             @endforeach
@@ -343,4 +344,12 @@
   {{--<!-- /.modal-dialog -->--}}
 </div>
 {{--<!-- /.modal -->--}}
+@endsection
+@section("custom_script")
+<script type="text/javascript">
+  function ubahrasio(id) {
+    var selectedText = $("#rasios option:selected").text();
+    alert(selectedText);
+  }
+</script>
 @endsection
