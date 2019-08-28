@@ -114,8 +114,10 @@
 function printPDF() {
   $('#print_pdf').printThis({
       canvas: true
-  });  
+  });
 }
-
+$('#print_pdf').printThis({
+    canvas: true
+});
 </script>
 @endsection

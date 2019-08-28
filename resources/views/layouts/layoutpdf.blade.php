@@ -39,7 +39,7 @@
       <div class="box-header with-border">
         <h3 class="box-title">Laporan</h3>
         <div class="box-tools">
-          <button type="button" class="btn btn-primary" onclick="printPDF()">Print to PDF</button>
+          <!-- <button type="button" class="btn btn-primary" onclick="printPDF()">Print to PDF</button> -->
         </div>
       </div>
       <div class="box-body">
